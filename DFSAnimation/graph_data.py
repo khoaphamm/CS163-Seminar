@@ -21,3 +21,22 @@ example_edges = [
 example_vertices = np.unique(
     np.array([item for sublist in example_edges for item in sublist])
 )
+
+tarjan_edges = [
+    (1, 2),
+    (3, 1),
+    (2, 5),
+    (3, 6),
+    (1, 5),
+    (5, 4),
+    (6, 7),
+    (7, 8),
+    (3, 7),
+    (8, 9),
+    (9, 10),
+    (10, 8),
+]
+
+tarjan_vertices = np.unique(
+    np.array([item for sublist in tarjan_edges for item in sublist])
+)

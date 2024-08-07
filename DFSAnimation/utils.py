@@ -41,7 +41,7 @@ class Tree(Graph):
             new_layout[u] += mid
         self.change_layout(new_layout)
 
-    def dfs(self, start):
+    def dfsAnimation(self, start):
         adj = self.get_adjacency_list()
 
         res_vertices = [[]]
@@ -284,7 +284,7 @@ class Tree(Graph):
             blinking = False, \
             rect = rect)
 
-    def dfs_animation(
+    def bfs_animation(
         self,
         start,
         turn_furthest_off=False,
