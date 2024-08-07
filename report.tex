@@ -1,0 +1,147 @@
+\documentclass{article}
+\usepackage{float}
+\input{preamble}
+
+\begin{document}
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+ 
+%----------------------------------------------------------------------------------------
+%   HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE VNU-HCM University of Science}\\[1.5cm] % Name of your university/college
+\includegraphics[scale=.1]{logo.png}\\[1cm] % Include a department/university logo - this will require the graphicx package
+\textsc{\Large Data Structure}\\[0.5cm] % Major heading such as course name
+\textsc{\large CS163}\\[0.5cm] % Minor heading such as course title
+
+%----------------------------------------------------------------------------------------
+%   TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \huge \bfseries \uppercase{Articulation Points and Bridges}}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+ 
+%----------------------------------------------------------------------------------------
+%   AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}{0.4\textwidth}
+\begin{center} \large
+
+\emph{23APCS02}\\
+
+Pham Gia Hung Khoa\\
+Pham Nguyen Anh Tai\\
+
+\end{center}
+
+\end{minipage}\\[2cm]
+
+% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%\Large \emph{Author:}\\
+%John \textsc{Smith}\\[3cm] % Your name
+
+%----------------------------------------------------------------------------------------
+%   DATE SECTION
+%----------------------------------------------------------------------------------------
+\vfill % Fill the rest of the page with whitespace
+
+{\large \begin{otherlanguage}{english}\today\end{otherlanguage}}\\[2cm] % Date, change the \today to a set date if you want to be precise
+
+
+
+
+\end{titlepage}
+
+\begin{otherlanguage}{english}\tableofcontents\end{otherlanguage}
+
+\newpage
+
+\section{Introduction}
+
+In graph theory, understanding the structural integrity of networks is crucial. Bridges are edges whose removal increases the number of disconnected components in a graph, acting as critical links. Articulation points are vertices that, if removed, also increase the number of disconnected components, serving as essential hubs. Identifying these elements helps improve network design and resilience, whether in communication networks, transportation systems, social networks, or biological systems. By pinpointing these vulnerabilities, we can create more robust and efficient networks across various domains.\\
+\section{Identifying Bridges and Articulation Points}
+
+\subsection{Naive algorithm $O(NM)$}
+
+For each edge $e \in E$, remove it from the graph and count the number of connected components $C'$, if $C' > C$ (the initial number of connected components), then we can claim that $e$ is a bridge, otherwise it is not a bridge.\\
+
+The similar algorithm for finding the articulation points, which tests each removal of the vertex $v$, whether it increases the number of connected components of the graph. Which results in a $O(N^2)$ time complexity.\\
+
+\textbf{\emph{Can we do better?}}
+\subsection{DFS Tree}
+
+To understand how we can effectively find the bridges and articulation points in terms of time complexity, we need to dive into the concept of DFS Tree.\\
+
+Without loss of generality, let's assume that the graph $G$ is connected. In general, DFS Tree is a spanning tree of the graph when we do the DFS traversal of the graph.\\
+
+Consider an undirected connected graph $G$. Let's run a depth-first traversal of the graph. It can be implemented by a recursive function like this:
+
+\begin{lstlisting}
+    function visit(u)
+        mark u as visited
+        for each vertex v among the neighbours of u:
+            if v is not visited:
+                mark the edge u-v
+                invoke visit(v)
+\end{lstlisting}
+
+[animation and demonstration]\\
+
+\newpage
+
+This is the DFS tree of our graph:
+
+\begin{figure}[H]
+
+\centering
+\includegraphics[scale=.5]{dfstreeDemo.png}\\[0.2cm] % 
+\caption{DFS Tree Illustration.}
+
+\end{figure}
+
+Let's look at all edges that were marked in line 5. They form a spanning tree of $G$, rooted at the vertex 1. We will call these edges \emph{span-edges}, all other edges are \emph{back-edges}.\\
+
+Then we have the following observation:\\
+
+\textbf{Observation:} The back-edges of the graph all connect a vertex with its descendant in the spanning tree. \textbf{This is why DFS tree is so useful.}
+
+\begin{remark}
+    \Remark Suppose that there is an edge $uv$, and without loss of generality the depth-first traversal reaches $u$ while $v$ is still unexplored. Then:
+    \begin{enumerate}[$\bullet$]
+        \item If the depth-first traversal goes to $v$ from $u$ using $uv$, then $uv$ is a span-edge.
+
+        \item If the depth-first traversal doesn't go to $v$ from $u$ using $uv$, then $v$ was already visited when the traversal looked at it at step 4. Thus it was explored while exploring one of the other neighbours of $u$, which means that $v$ is a descendent of $u$ in the DFS tree.
+    \end{enumerate}
+ \end{remark}
+
+For example in the graph above, vertices 4 and 8 couldn't possibly have a back-edge connecting them because neither of them is an ancestor of the other. If there was an edge between 4 and 8, the traversal would have gone to 8 from 4 instead of going back to 2.
+
+This is the most important observation about the DFS tree. The DFS tree is so useful because it simplifies the structure of a graph. Instead of having to worry about all kinds of edges, we only need to care about a tree and some additional ancestor-descendant edges. This structure is so much easier to think and write algorithms about.
+
+\subsection{How to find Bridges and Articulation Points}
+
+From this observation, we can come up with the following intuitive dynamic programming algorithm:
+
+Let $dp[u] = \# \textit{of back-edges that connects $v$ or its descendants to its ancestors}$, then $dp[u]$ can be calculated using this formula:
+
+\begin{align*}
+    dp[u] &= \textit{\# of back-edges going from u to its ancestors }\\
+            &- \textit{\# of back-edges going from u to its descendants } + \sum_{v \in child(u)} dp[v] 
+\end{align*}
+    
+
+\section{Applications}
+
+\section{Additional Insights}
+
+\section{Reference}
+
+
+\end{document}
+

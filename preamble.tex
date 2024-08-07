@@ -1,0 +1,202 @@
+\usepackage[utf8]{vietnam}
+\usepackage[english]{babel}
+\usepackage[usenames,svgnames,dvipsnames]{xcolor}
+\usepackage{tocloft}
+\usepackage{booktabs}
+\usepackage{siunitx}
+
+
+
+\usepackage{tocloft}
+
+% Change the title of the table of contents
+\renewcommand{\contentsname}{Table of Contents}
+
+% Change the font of the section titles
+\renewcommand{\cftsecfont}{\bfseries}
+
+% Change the font of the page numbers
+\renewcommand{\cftsecpagefont}{\bfseries}
+
+% Add a dot after the section numbers
+\renewcommand{\cftsecaftersnum}{.}
+
+% Change the indentation of the subsections
+\setlength{\cftsubsecindent}{1cm}
+
+%Fill with dots
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+
+
+
+
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcoffins,calc}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{yhmath}
+\usepackage{hyperref}
+\usepackage[left=3.00cm, right=2.00cm, top=2.00cm, bottom=2.00cm]{geometry}
+%\usepackage[amsthm]{ntheorem}
+%\renewcommand\thechapter{\Roman{chapter}}
+\renewcommand\thesection{\arabic{section}}
+\theoremstyle{definition}
+\newtheorem{bt}{Bài}
+
+%\theoremstyle{nonumberplain}
+%\theoremstyle{break}
+%\numberwithin{equation}{chapter}
+\usepackage{ esint }
+\usepackage{array}
+\usepackage{enumerate} 
+%\usepackage{enumitem}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tikz}
+\usetikzlibrary{graphs,graphs.standard}
+\usepackage{tkz-euclide,amsmath}
+\usepackage{ifthen}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\pagestyle{plain}
+\usepackage{ mathrsfs } %chữ in hoa
+%  \usepackage{pageborder} %khung bìa
+\usepackage[utf8]{inputenc} 
+
+
+\usetikzlibrary{arrows,%
+                shapes,positioning}
+                
+
+\usetikzlibrary{calc}
+\usepackage{longfbox}
+\usepackage{indentfirst}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+\usepackage{sectsty}
+
+
+\usepackage[Glenn]{fncychap}
+\let\svlim\lim\def\lim{\svlim\limits}
+\newcommand\N{\ensuremath{\mathbb{N}}}
+\newcommand\R{\ensuremath{\mathbb{R}}}
+\newcommand\Z{\ensuremath{\mathbb{Z}}}
+\renewcommand\O{\ensuremath{\emptyset}}
+\newcommand\Q{\ensuremath{\mathbb{Q}}}
+\newcommand\C{\ensuremath{\mathbb{C}}}
+\renewcommand\P{\ensuremath{\mathcal{P}}}
+\newcommand\V{\ensuremath{\nu}}
+
+\let\implies\Rightarrow
+\let\impliedby\Leftarrow
+\let\iff\Leftrightarrow
+\let\epsilon\varepsilon
+
+
+% Setup for some boxes used in courses
+
+\definecolor{gree}{RGB}{7, 135, 44}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{claim}{
+    enhanced,
+    boxrule=0pt,frame hidden,
+    borderline west={2pt}{0pt}{green!50!black},
+    colback=green!10!white,
+    sharp corners
+}
+
+\newtcolorbox{remark}{
+    enhanced,
+    boxrule=0pt,frame hidden,
+    borderline west={4pt}{0pt}{black},
+    colback=black!10!white,
+    sharp corners
+}
+
+\newcommand{\Claim}{\textbf{\textcolor{green!50!black}{Claim -- }}}
+
+\newcommand{\Remark}{\textbf{Why? -- }}
+
+\usepackage{thmtools}
+\usepackage[framemethod=TikZ]{mdframed}
+
+\theoremstyle{definition}
+\mdfdefinestyle{mdbluebox}{%
+    roundcorner = 10pt,
+    linewidth=1pt,
+    skipabove=12pt,
+    innerbottommargin=9pt,
+    skipbelow=2pt,
+    nobreak=true,
+    linecolor=blue,
+    backgroundcolor=TealBlue!5,
+}
+\declaretheoremstyle[
+headfont=\sffamily\bfseries\color{MidnightBlue},
+mdframed={style=mdbluebox},
+headpunct={\\[3pt]},
+postheadspace={0pt}
+]{thmbluebox}
+
+\declaretheorem[%
+style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
+\declaretheorem[style=thmbluebox,name=Bổ đề,sibling=theorem]{lemma}
+\declaretheorem[style=thmbluebox,name=Proposition,sibling=theorem]{proposition}
+\declaretheorem[style=thmbluebox,name=Corollary,sibling=theorem]{corollary}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf}
+}
+\newcommand{\kt}{\hfill{$\square$}}
+
+\definecolor{atomkeywords}{rgb}{0.55, 0.47, 0.68}
+\definecolor{atomstrings}{rgb}{0.78, 0.63, 0.45}
+\definecolor{atomnumbers}{rgb}{0.5,0.5,0.5}
+\definecolor{atomcomments}{rgb}{0.5, 0.5, 0.5}
+\definecolor{atomoperators}{rgb}{0.4, 0.4, 0.4}
+\definecolor{atombackground}{rgb}{0.95, 0.95, 0.95}
+\definecolor{atomfunctions}{rgb}{0.4, 0.6, 0.8}
+
+\lstdefinestyle{atomOneLight}{
+    language=python,
+    backgroundcolor=\color{atombackground},   
+    commentstyle=\color{atomcomments},
+    keywordstyle=\color{atomkeywords},
+    numberstyle=\tiny\color{atomnumbers},
+    stringstyle=\color{atomstrings},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    classoffset=1,
+    %%The below keywords will be highlighted in the code snippet.
+    morekeywords={factorial, is_even, is_odd, tail_factorial, knapSack, fibonacci, tree, max, visit},
+    keywordstyle=\color{atomfunctions},
+    classoffset=0
+}
+
+\lstset{style=atomOneLight}

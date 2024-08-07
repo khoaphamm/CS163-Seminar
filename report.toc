@@ -1,0 +1,13 @@
+\babel@toc {english}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {section}{\numberline {2}Identifying Bridges and Articulation Points}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Naive algorithm $O(NM)$}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}DFS Tree}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}How to find Bridges and Articulation Points}{4}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Applications}{4}{section.3}%
+\contentsline {section}{\numberline {4}Additional Insights}{4}{section.4}%
+\contentsline {section}{\numberline {5}Reference}{4}{section.5}%
