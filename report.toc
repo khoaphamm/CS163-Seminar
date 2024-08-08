@@ -8,6 +8,15 @@
 \contentsline {subsection}{\numberline {2.1}Naive algorithm $O(NM)$}{2}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}DFS Tree}{2}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}How to find Bridges and Articulation Points}{4}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Applications}{4}{section.3}%
-\contentsline {section}{\numberline {4}Additional Insights}{4}{section.4}%
-\contentsline {section}{\numberline {5}Reference}{4}{section.5}%
+\contentsline {subsection}{\numberline {2.4}Tarjan's Algorithm}{4}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Robert Tarjan}{4}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}The algorithm}{4}{subsubsection.2.4.2}%
+\contentsline {section}{\numberline {3}Applications}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Network Reliability and Vulnerability Analysis}{5}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Transportation Networks}{5}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Additional Insights}{5}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Biconnected Components}{5}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Block-cut Tree}{5}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Two-edge Connected Component}{5}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Online Bridges}{5}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Reference}{6}{section.5}%

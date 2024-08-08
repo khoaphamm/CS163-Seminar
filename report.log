@@ -1,9 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.6.22)  7 AUG 2024 10:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.6.22)  8 AUG 2024 11:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**E:/DIN/Note-taking-2023/CS163_LAB/Presentation_Report/report.tex
-(E:/DIN/Note-taking-2023/CS163_LAB/Presentation_Report/report.tex
+**E:/DIN/Note-taking-2023/CS163_LAB/Presentation_Report/CS163-seminar/report.te
+x
+
+(E:/DIN/Note-taking-2023/CS163_LAB/Presentation_Report/CS163-seminar/report.tex
 LaTeX2e <2024-06-01> patch level 1
 L3 programming layer <2024-05-27>
 (C:\Users\Hp\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -2130,7 +2132,7 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 ))
-<logo.png, id=74, 1204.7409pt x 982.872pt>
+<logo.png, id=110, 1204.7409pt x 982.872pt>
 File: logo.png Graphic file (type png)
 <use logo.png>
 Package pdftex.def Info: logo.png  used on input line 17.
@@ -2227,7 +2229,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 94--95
 
 
 [2]
-<dfstreeDemo.png, id=120, 445.665pt x 600.2425pt>
+<dfstreeDemo.png, id=165, 445.665pt x 600.2425pt>
 File: dfstreeDemo.png Graphic file (type png)
 <use dfstreeDemo.png>
 Package pdftex.def Info: dfstreeDemo.png  used on input line 103.
@@ -2249,23 +2251,68 @@ LaTeX Warning: The counter will not be printed.
 
 
 [3 <./dfstreeDemo.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 138--139
 
-[4] (report.aux)
+ []
+
+
+LaTeX Warning: The counter will not be printed.
+             The label is: $\bullet $ on input line 150.
+
+
+LaTeX Warning: The counter will not be printed.
+             The label is: $\bullet $ on input line 157.
+
+
+LaTeX Warning: The counter will not be printed.
+             The label is: $\bullet $ on input line 169.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 179--180
+
+ []
+
+
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 181--182
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 186--187
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 188--189
+
+ []
+
+
+LaTeX Warning: The counter will not be printed.
+             The label is: $\bullet $ on input line 206.
+
+
+
+[5]
+
+[6] (report.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 1
 L3 programming layer <2020/03/25>
  ***********
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 1A5A32CFA106B88CC096E22B31D9E011;1269.
+(rerunfilecheck)             Checksum: 859309C297BD56C6D2802851D3FB7D0C;2804.
  ) 
 Here is how much of TeX's memory you used:
- 56476 strings out of 473920
- 1392253 string characters out of 5728390
+ 56516 strings out of 473920
+ 1392938 string characters out of 5728390
  2133056 words of memory out of 5000000
- 78240 multiletter control sequences out of 15000+600000
+ 78256 multiletter control sequences out of 15000+600000
  586896 words of font info for 102 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 89i,10n,99p,1243b,1269s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 89i,10n,99p,1257b,1269s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Hp/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cme
 x10.pfb><C:/Users/Hp/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
 cm/cmmi10.pfb><C:/Users/Hp/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
@@ -2286,9 +2333,9 @@ ts/type1/vntex/vnr/vnr5.pfb><C:/Users/Hp/AppData/Local/Programs/MiKTeX/fonts/ty
 pe1/vntex/vnr/vnti10.pfb><C:/Users/Hp/AppData/Local/Programs/MiKTeX/fonts/type1
 /vntex/vnr/vnti12.pfb><C:/Users/Hp/AppData/Local/Programs/MiKTeX/fonts/type1/vn
 tex/vnr/vntt8.pfb>
-Output written on report.pdf (5 pages, 528564 bytes).
+Output written on report.pdf (7 pages, 549943 bytes).
 PDF statistics:
- 220 PDF objects out of 1000 (max. 8388607)
- 23 named destinations out of 1000 (max. 500000)
- 231 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 294 PDF objects out of 1000 (max. 8388607)
+ 47 named destinations out of 1000 (max. 500000)
+ 303 words of extra memory for PDF output out of 10000 (max. 10000000)
 

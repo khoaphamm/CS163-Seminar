@@ -360,32 +360,37 @@ class TarjanScene(Scene):
             pos1 = self.table.get_entries((u+1, 2)).get_center()
             pos2 = self.table.get_entries((u+1, 3)).get_center()
 
-            self.play(Transform(cnt, Tex(str(time_dfs + 1).replace("L", "")).set_color(solarized.BASE00).scale(0.8).next_to(holder, RIGHT)), run_time = 0.3)
+            self.play(Transform(cnt, Tex(str(time_dfs + 1).replace("L", "")).set_color(solarized.BASE00).scale(0.8).next_to(holder, RIGHT)), run_time = 0.5)
             
             tmp1 = Tex(str(time_dfs + 1).replace("L", "")).set_color(solarized.BASE00).scale(0.8).move_to(pos1)
             tmp2 = Tex(str(time_dfs + 1).replace("L", "")).set_color(solarized.BASE00).scale(0.8).move_to(pos2)
 
 
             
-            self.play(Indicate(self.g[u], color = solarized.GREEN), run_time = 0.5)
-            self.play(self.g[u].animate.set_fill(solarized.VIOLET), run_time = 0.2)
+            self.play(Indicate(self.g[u], color = solarized.GREEN), run_time = 1)
+            self.play(self.g[u].animate.set_fill(solarized.VIOLET), run_time = 0.5)
+            
             
             val1 = cnt.copy()
             val2 = cnt.copy()
             self.play(val1.animate.move_to(pos1), 
                       val2.animate.move_to(pos2), 
                       Transform(self.table.get_entries((u+1, 2)), tmp1), 
-                      Transform(self.table.get_entries((u+1, 3)), tmp2), 
-                      run_time = 0.3, 
-                      rate_func = rush_from)  
+                      Transform(self.table.get_entries((u+1, 3)), tmp2),
+                      run_time = 0.75, 
+                      rate_func = rush_from
+            )
             self.play(FadeOut(val1), 
                       FadeOut(val2),
                       ShowPassingFlash(self.table.get_cell((u+1, 2)).copy().set_color(solarized.GREEN), 
-                                       run_time = 0.7,
-                                       time_width = 0.20),
+                                       run_time = 0.75,
+                                       time_width = 0.25),
                       ShowPassingFlash(self.table.get_cell((u+1, 3)).copy().set_color(solarized.GREEN),
-                                        run_time = 0.7,
-                                        time_width = 0.20))
+                                        run_time = 0.75,
+                                        time_width = 0.25),
+                      run_time = 0.75, 
+                      rate_func = rush_from)  
+            self.wait()
          
 
             time_dfs += 1
@@ -430,6 +435,7 @@ class TarjanScene(Scene):
                         self.wait()
                         
                         self.play(Uncreate(eql_sign), Uncreate(position), Uncreate(cmpval1), Uncreate(cmpval2), Uncreate(cmpcopy1), run_time = 0.5)
+                        self.wait()
                     
                     low[u] = min(low[u], low[v])
 
@@ -463,13 +469,44 @@ class TarjanScene(Scene):
                         self.play(Create(bridge_edge), self.g.edges[pair].animate.set_stroke(opacity = 0), run_time = 1)
 
                         self.play(Uncreate(eql_sign), Uncreate(cmpval1), Uncreate(cmpval2), run_time = 0.5)
+                        self.wait()
 
                         bridge += 1
                     child += 1
-                    if u == pre:  # If u is the root of the DFS tree
+
+                    if u == pre and not joint[u]:  # If u is the root of the DFS tree
                         if child > 1:
+                            txt = Tex(f"Root of DFS tree").set_color(solarized.BASE00).scale(0.8).move_to(display_pos)
+                            self.play(Create(txt), run_time = 1)
+                            self.wait()
+                            txt2 = Tex(f"$(Childs = {child}) > 1$").set_color(solarized.BASE00).scale(0.8).move_to(display_pos + 0.5*DOWN)
+                            self.play(Create(txt2))
+                            self.play(self.g[u].animate.set_fill(solarized.BLACK), run_time = 0.5)
+                            self.wait()
+                            self.play(Uncreate(txt), Uncreate(txt2), run_time = 0.5)
+                            
                             joint[u] = True
+
+                        
                     elif low[v] >= num[u]:
+                        cmpval1 = self.table.get_entries((v+1, 3)).copy()
+                        cmpval2 = self.table.get_entries((u+1, 2)).copy()
+
+                        eql_sign = Tex(f"$low[{v}] \geq num[{u}]$").set_color(solarized.BASE00).scale(0.8).move_to(display_pos)
+                        position = Tex("$ \geq $").set_color(solarized.BASE00).next_to(eql_sign, DOWN).scale(0.8)
+                        
+                        self.play(Create(eql_sign), 
+                                Create(position),
+                                cmpval1.animate.move_to(position.get_center() + LEFT * 0.5), 
+                                cmpval2.animate.move_to(position.get_center() + RIGHT * 0.5) , 
+                                run_time = 1)
+                        
+                        self.wait()
+
+                        self.play(self.g[u].animate.set_fill(solarized.BLACK), run_time = 0.5)
+                        
+                        self.play(Uncreate(eql_sign), Uncreate(position), Uncreate(cmpval1), Uncreate(cmpval2), run_time = 0.5)
+                        self.wait()
                         joint[u] = True
                 else:
                     cmpval1 = self.table.get_entries((u+1, 3)).copy()
@@ -478,12 +515,21 @@ class TarjanScene(Scene):
                     tmp = Tex(str(num[v]).replace("L", "")).set_color(solarized.BASE00).scale(0.8).move_to(cmpval1.get_center())
 
                     if(u == 7):
-                        self.play(Wiggle(back_edges_line[0], scale_factor = 1.5))
+                        self.play(Indicate(back_edges_line[0], color = solarized.GREEN),
+                                  Indicate(self.g[u], color = solarized.GREEN),
+                                  Indicate(self.g[v], color = solarized.GREEN),
+                                  run_time = 1.5)
                         
                     elif(u == 10):
-                        self.play(Wiggle(back_edges_line[1], scale_factor = 1.5))
+                        self.play(Indicate(back_edges_line[1], color = solarized.GREEN),
+                                  Indicate(self.g[u], color = solarized.GREEN),
+                                  Indicate(self.g[v], color = solarized.GREEN),
+                                  run_time = 1.5)
                     elif(u == 5):
-                        self.play(Wiggle(back_edges_line[2], scale_factor = 1.5))
+                        self.play(Indicate(back_edges_line[2], color = solarized.GREEN),
+                                  Indicate(self.g[u], color = solarized.GREEN),
+                                  Indicate(self.g[v], color = solarized.GREEN),
+                                  run_time = 1.5)
                     
                     if(num[v] < low[u]):
                         eql_sign = Tex(f"$num[{v}] < low[{u}]$", ).set_color(solarized.BASE00).scale(0.8).move_to(display_pos)
@@ -504,10 +550,12 @@ class TarjanScene(Scene):
                         self.wait()
                         
                         self.play(Uncreate(eql_sign), Uncreate(position), Uncreate(cmpval1), Uncreate(cmpval2), Uncreate(cmpcopy2), run_time = 0.5)
+                        self.wait()
 
                     low[u] = min(low[u], num[v])
             
-            self.play(self.g[u].animate.set_fill(solarized.RED), run_time = 0.2)
+            if not joint[u]:
+                self.play(self.g[u].animate.set_fill(solarized.RED), run_time = 0.2)
         
         tarjan(1, 1)
-        self.wait()
+        self.wait(2)

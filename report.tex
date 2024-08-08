@@ -128,19 +128,93 @@ This is the most important observation about the DFS tree. The DFS tree is so us
 
 From this observation, we can come up with the following intuitive dynamic programming algorithm:
 
-Let $dp[u] = \# \textit{of back-edges that connects $v$ or its descendants to its ancestors}$, then $dp[u]$ can be calculated using this formula:
+Let $dp[u] = \# \textit{of back-edges that connects $u$ or its descendants to its ancestors}$, then $dp[u]$ can be calculated using this formula:
 
 \begin{align*}
     dp[u] &= \textit{\# of back-edges going from u to its ancestors }\\
             &- \textit{\# of back-edges going from u to its descendants } + \sum_{v \in child(u)} dp[v] 
 \end{align*}
-    
+
+Using this definition of dynamic programming approach, we can check if an edge u->v in DFS tree is a bridge or not by checking whether $dp[v] = 0$. If it is true, then u->v is a bridge, otherwise it is not.\\
+
+The same techniques can be used to check whether a vertex $v$  is an articulation point or not by checking the condition $dp[v] = 0$. But there is a special case that $v$ is the root of the DFS Tree, in which $dp[root]$ is always equal to 0, then we must check whether the root contains at least two children.
+
+\subsection{Tarjan's Algorithm}
+
+\subsubsection{Robert Tarjan}
+Robert Endre Tarjan is an American computer scientist renowned for his contributions to the field of algorithms and data structures. He has made significant advances in graph theory, network analysis, and optimization, many of which are foundational in both theoretical and applied computer science. Tarjan is particularly famous for his development of efficient graph algorithms, some of which are used to solve problems like finding strongly connected components, shortest paths, and minimum spanning trees.
+
+\subsubsection{The algorithm}
+Tarjan suggested a more formal algorithm to find the articulation points and bridges. The algorithm based firmly on the previous observation:
+
+\begin{enumerate}[$\bullet$]
+    \item $num[u] =$ The first time it is visited by the DFS.
+    \item $low[u] =$ The mininum of $num[u]$ that can be reached by going from u to any node in its sub-trees and using \textbf{at most one} back-edge.
+\end{enumerate}
+
+To calculate these two 2 arrays, we will use Depth-first Search technique to calculate it as follows:
+
+\begin{enumerate}[$\bullet$]
+    \item $num[u]$ will be calculated using a timer, or a variable called $cnt$. This timer will increase by one whenever we invoke a step of $dfs()$. We set $num[u] = ++cnt$
+    \item Initially: $low[u] = num[u]$. For each edge $(u, v)$ (v is not parent of u):
+    \begin{enumerate}
+        \item If $(u, v)$ is a span-edge: $low[u] = min(low[u], low[v])$
+        \item If $(u, v)$ is a back-edge: $low[u] = min(low[u], num[v])$
+    \end{enumerate}
+\end{enumerate}
+
+After computing the $num$ and $low$ arrays, we could identify the bridges and articulation points in our graph:
+
+\begin{claim}
+    \begin{enumerate}[$\bullet$]
+        \item A span-edge $(u, v)$ ($u$ is parent of $v$ in DFS Tree) is a bridge if $low[v] > num[u]$ (or $low[v] = num[v]$ or $low[v] >= num[v]$).
+        \item A vertex $u$ is a cut if $low[v] \geq num[u]$ for any span-edge $(u, v)$.
+    \end{enumerate}
+\end{claim}
+
 
 \section{Applications}
+\subsection{Network Reliability and Vulnerability Analysis}
+
+\textbf{Bridges:} Identifying bridges helps in understanding critical connections whose failure would disrupt network connectivity.\\
+
+\textbf{Articulation Points:} Identifying these points helps in determining critical nodes whose failure would fragment the network.\\
+
+Therefore, by understanding how weak or strong one network is, we could reinforce it via redundant paths or nodes to improve its fault tolerance, thus ensuring connectivity within the network itself.
+
+\subsection{Transportation Networks}
+\textbf{Infrastructure Planning:} Identifying bridges and articulation points in transportation networks (e.g., roads, railways) helps in planning for alternative routes and ensuring smooth transportation even if some parts of the network fail.\\
+
+\textbf{Emergency Response:} Critical nodes and edges can be prioritized for maintenance and quick repairs to minimize disruption during emergencies.\\
 
 \section{Additional Insights}
 
+\subsection{Biconnected Components}
+A Biconnected Component (BCC) in a graph is a maximal subgraph in which any two vertices are connected by at least two disjoint paths. This means that there are no single vertices whose removal would disconnect the subgraph. In other words, a BCC is a portion of the graph where connectivity is maintained even if any one vertex is removed.
+
+\subsection{Block-cut Tree}
+ Block-Cut Tree (BCT) is a tree structure that represents the decomposition of a graph into its biconnected components (blocks) and articulation points (cut vertices). In this tree, each block and each cut vertex is a node. Edges in the Block-Cut Tree connect cut vertices to the blocks they belong to, providing a clear hierarchical view of the graph's connectivity
+
+\subsection{Two-edge Connected Component}
+A two-edge connected component (also known as a 2-edge-connected component) in a graph is a maximal subgraph in which any two vertices are connected by at least two edge-disjoint paths. This means that there is no single edge whose removal would disconnect the subgraph.
+
+\textbf{A Bridge Tree} is a tree structure derived from a graph, \textbf{where each node represents a two-edge connected component (2ECC)} of the original graph, and edges between nodes in the tree correspond to bridges (cut-edges) in the original graph that connects these components.
+
+\subsection{Online Bridges}
+Bridges can be found at the time of building the graph by the following idea:
+
+\begin{enumerate}[$\bullet$]
+    \item Initially we have the graph of n vertices and no edges.
+    \item For each edge (u, v) to be added there can be 3 cases:
+    \begin{enumerate}
+        \item u and v are in the same 2-edges-connected component: The number of bridges does not change.
+        \item u and v are in completely different components: The number of bridges increases by one.
+        \item u and v are in the same connected component but different 2-edge-connected component: Creates cycle with one or more previous bridges. The number of bridges decreases by one or more
+    \end{enumerate}
+\end{enumerate}
+
 \section{Reference}
+
 
 
 \end{document}

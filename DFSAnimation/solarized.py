@@ -26,6 +26,7 @@ BLUE = "#268bd2"
 CYAN = "#2aa198"
 GREEN = "#859900"
 PINK = "#FF00CC"
+BLACK = "#000000"
 
 from manim import config
 
